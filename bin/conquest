@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+case ARGV[0]
+when "-v"
+  require "conquest/version"
+  puts "Conquest Version #{Conquest::VERSION} on Ruby #{RUBY_VERSION}"
+when "-g"
+  begin
+    require "conquest/gtk"
+  rescue LoadError
+    STDERR.puts "Install the conquest-gtk gem to run in graphical mode."
+    exit 1
+  end
+
+  Conquest::run_gui
+else
+  require "conquest"
+  Conquest::run_cli
+end
