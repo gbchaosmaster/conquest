@@ -15,10 +15,8 @@ module Conquest
         Please enter where you would like to save your files.
         Enter paths relative to the current directory.
       EOS
-      print "Hex List: "
-      save_hex_list = STDIN.gets.strip
-      print "ARDS Code: "
-      save_ards_code = STDIN.gets.strip
+      save_hex_list = Nutella::input "Hex List: "
+      save_ards_code = Nutella::input "ARDS Code: "
 
       File.open(save_hex_list, "w") { |f| f << parser.hex_list }
       File.open(save_ards_code, "w") { |f| f << parser.ards_code }

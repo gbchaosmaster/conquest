@@ -21,5 +21,5 @@ Gem::Specification.new do |gem|
   gem.files = Dir["lib/**/*"] + %w[LICENSE Rakefile README.md conquest.gemspec]
 
   gem.add_dependency "nokogiri", "~> 1.5"
-  gem.add_dependency "nutella", "~> 0.4"
+  gem.add_dependency "nutella", "~> 0.5"
 end
