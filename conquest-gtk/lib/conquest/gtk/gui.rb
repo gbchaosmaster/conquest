@@ -18,7 +18,13 @@ module Conquest
     end
 
     def init_ui
-      vbox_main = Gtk::VBox.new false, 5
+      hbox_main = Gtk::HBox.new false, 5
+
+################################################################################
+
+      # vbox_hex_list contains the hex list and its copy button.
+
+      vbox_hex_list = Gtk::VBox.new false, 5
 
       # Both text views are directly in vbox_main.
 
@@ -26,34 +32,37 @@ module Conquest
       @txt_hex_list = Gtk::TextView.new
       scr_txt_hex_list.add_with_viewport @txt_hex_list
 
+      @btn_copy_hex_list = Gtk::Button.new "Copy Hex List"
+
+      vbox_hex_list.pack_start scr_txt_hex_list
+      vbox_hex_list.pack_start @btn_copy_hex_list, false
+
+################################################################################
+
+      # vbox_ards_code contains the ARDS code and its copy button.
+
+      vbox_ards_code = Gtk::VBox.new false, 5
+
       scr_txt_ards_code = Gtk::ScrolledWindow.new
       @txt_ards_code = Gtk::TextView.new
       scr_txt_ards_code.add_with_viewport @txt_ards_code
+
+      @btn_copy_ards_code = Gtk::Button.new "Copy ARDS Code"
+
+      vbox_ards_code.pack_start scr_txt_ards_code
+      vbox_ards_code.pack_start @btn_copy_ards_code, false
+
+################################################################################
 
       # Automatic scrollbars on both text views.
       [scr_txt_hex_list, scr_txt_ards_code].map! do |scr|
         scr.set_policy *[Gtk::POLICY_AUTOMATIC] * 2
       end
 
-################################################################################
+      hbox_main.pack_start vbox_hex_list, true
+      hbox_main.pack_start vbox_ards_code, true
 
-      # hbox_controls contains the two buttons along the bottom.
-
-      hbox_controls = Gtk::HBox.new false, 5
-
-      @btn_copy_hex_list = Gtk::Button.new "Copy Hex List"
-      @btn_copy_ards_code = Gtk::Button.new "Copy ARDS Code"
-
-      hbox_controls.add @btn_copy_hex_list
-      hbox_controls.add @btn_copy_ards_code
-
-################################################################################
-
-      vbox_main.pack_start scr_txt_hex_list
-      vbox_main.pack_start scr_txt_ards_code
-      vbox_main.pack_start hbox_controls, false
-
-      add vbox_main
+      add hbox_main
     end
 
     def init_signals
