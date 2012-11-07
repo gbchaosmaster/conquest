@@ -1,3 +1,3 @@
 module Conquest
-  GUI_VERSION = "0.0.1"
+  GUI_VERSION = "0.2"
 end
